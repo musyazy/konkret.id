@@ -4,7 +4,10 @@ from __future__ import annotations
 import html
 import math
 
-from reportlab.graphics.barcode.qr import QrCodeWidget
+try:
+    from reportlab.graphics.barcode.qr import QrCodeWidget
+except ImportError:
+    QrCodeWidget = None
 
 from utils.dokumen import STATUS_KATA, Dokumen, Grafik, Tabel
 
