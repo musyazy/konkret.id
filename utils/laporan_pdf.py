@@ -6,7 +6,7 @@ import math
 from typing import Dict
 from xml.sax.saxutils import escape as _escape_xml
 
-from reportlab.graphics.barcode.qr import QrCodeWidget
+#from reportlab.graphics.barcode.qr import QrCodeWidget
 from reportlab.graphics.shapes import Drawing, Line, PolyLine, Rect, String, Circle
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_RIGHT
