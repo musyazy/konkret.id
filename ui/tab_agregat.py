@@ -232,10 +232,13 @@ def _kartu_saringan(jenis, ukuran_maks=None):
         if fig is not None:
             st.plotly_chart(fig)
         else:
-            data = pd.DataFrame({"Hasil uji": df.set_index("Saringan (mm)")["Lolos (%)"]})
-            data["Batas bawah"] = pd.Series({k: v[0] for k, v in spec.items()})
-            data["Batas atas"] = pd.Series({k: v[1] for k, v in spec.items()})
-            st.line_chart(data.sort_index())
+           # Membuat DataFrame dan konversi langsung ke numerik agar aman dari error grafik
+    data = pd.DataFrame({"Hasil uji": df.set_index("Saringan (mm)")["Lolos (%)"]})
+    data["Batas bawah"] = pd.Series({k: v[0] for k, v in spec.items()})
+    data["Batas atas"] = pd.Series({k: v[1] for k, v in spec.items()})
+    
+    chart_data = data.sort_index().apply(pd.to_numeric, errors='coerce')
+    st.line_chart(chart_data)
 
         with st.expander("Pengecekan per saringan terhadap batas spesifikasi"):
             tabel = cek.copy()
