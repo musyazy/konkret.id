@@ -238,7 +238,7 @@ def _kartu_saringan(jenis, ukuran_maks=None):
             data["Batas atas"] = pd.Series({k: v[1] for k, v in spec.items()})
             
             chart_data = data.sort_index().apply(pd.to_numeric, errors='coerce')
-            st.line_chart(chart_data)
+            st.line_chart(chart_data.astype(float))
         
     
 
